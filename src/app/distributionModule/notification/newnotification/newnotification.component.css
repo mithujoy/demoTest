@@ -1,0 +1,10 @@
+ .example-full-width{width:60%;}
+.example-half-width{width:90%;}
+
+.form-inline .form-control {width:100% !important}
+
+.example-margin{
+    margin-left: 101px;
+    height: 50px;}
+    .example-full-width{width:84%;}
+

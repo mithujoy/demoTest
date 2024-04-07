@@ -1,0 +1,61 @@
+<!-- <h1 mat-dialog-title class="primary-color">View Transaction</h1> -->
+<mat-toolbar>
+    <div class="mat-toolbar-tools" layout="column">
+        <h2>View Notification Report</h2>
+
+    </div>
+    <!--&nbsp;
+      <div class="button-row">
+        <button mat-raised-button color="primary" (click)="downloadLocalData()">Export</button>
+        <button mat-raised-button color="primary" (click)="downloadArtistDetails()">Export Artists</button>
+
+      </div>-->
+
+</mat-toolbar>
+<mat-dialog-content class="accent-color">
+    <mat-progress-spinner *ngIf="showLoader" class="example-margin" [color]="color" [mode]="mode" [value]="value">
+    </mat-progress-spinner>
+    <table class="table table-hover" *ngIf="!showLoader">
+        <thead>
+            <tr>
+                <th colspan="3" style="text-align:center;">Total Notification Count: {{displayData.total}}</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let data of displayData.data; let i=index">
+                <td>Os : {{data.os}}</td>
+                <td>Count : {{data.total}} </td>
+                <td>Status : {{data.status}} </td>
+                <td>Message : {{data.messageStatus}} </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!--<div class="form-group margindate example-half-width" style="margin-bottom:12px;">
+            <label class="control-label col-sm-3 datesubscription nowrap">Date Time:</label>
+            <div class="col-sm-9 ">
+               <angular2-date-picker [(ngModel)]="date" [settings]="settings" (onDateSelect)="onDateSelect($event)"></angular2-date-picker> 
+            </div>
+    </div>-->
+
+
+    <!--<div class="form-group margindate example-half-width" style="margin-bottom:12px;">
+            <label class="control-label col-sm-3 datesubscription nowrap">Date Time:</label>
+            <div class="col-sm-9 ">
+               <input placeholder="Date Time:"
+               [(ngModel)]="dateTime"
+               [owlDateTimeTrigger]="dt" [owlDateTime]="dt">
+        <owl-date-time #dt></owl-date-time> 
+            </div>
+        </div>-->
+
+
+
+
+</mat-dialog-content>
+<mat-dialog-actions>
+
+    <!-- <button style="margin-right: 7px;" mat-raised-button color="primary" (click)="addItem()">Submit</button> -->
+    <button mat-raised-button color="primary" mat-dialog-close> Close</button>
+</mat-dialog-actions>

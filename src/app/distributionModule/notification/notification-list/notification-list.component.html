@@ -1,0 +1,91 @@
+<div class="container-fluid">
+    <div class="row" style="padding-bottom:1px; margin-bottom:15px;">
+
+        <form name="refreshment">
+
+            <mat-form-field style="margin-right:15px;">
+                <mat-select placeholder="Select Service" [(ngModel)]="selectedService"
+                    (ngModelChange)="getCountry(selectedService)" name="serviceName"
+                    [disabled]="selectedService ==='Mziiki'">
+
+                    <mat-option *ngFor="let services of serviceNames" [value]="services.serviceCode">{{
+                        services.service }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!--<mat-form-field style="margin-right:15px;"  *ngIf="showCountry" >
+            <mat-select    placeholder="Select Country" [(ngModel)]="selectedCountry" (ngModelChange)="displayContainerData(selectedService,selectedCountry)" name="countryName">
+               <mat-option *ngFor="let countries of countryNames" [value]="countries.countryId">{{ countries.countryName }}</mat-option>
+            </mat-select>
+          </mat-form-field>-->
+            <!-- <mat-form-field  *ngIf="selectedCountry" >
+            <mat-select style="margin-right:15px;" placeholder="Select Service" placeholder="Select Container"  [(ngModel)]="selectedSection" (ngModelChange)="displayContainerData(selectedService,selectedSection)" name="sectionName">
+
+                <mat-option *ngFor="let sections of sectionName" [value]="sections.container_id">{{ sections.section }}</mat-option>
+            </mat-select>
+          </mat-form-field> -->
+            <!-- </mat-form-field> -->
+
+            <!-- <button type="submit" class="btn btn-success" *ngIf="selectedCountry && selectedSection" (click)="displayContainerData(selectedService,selectedSection)">Display</button> -->
+
+        </form>
+    </div>
+
+    <div class="row" *ngIf="selectedService">
+
+        <div class="button-row" style="padding-bottom:15px;" *ngIf="selectedService">
+            <button style="margin-right:15px;" mat-raised-button (click)="newNotification()" *ngIf="selectedService">Add
+                New Notification</button>
+            <button style="margin-right:15px;" mat-raised-button (click)="refeshTransaction()">Refresh</button>
+            <!-- <a [routerLink]="'/newnotification?sc=Airtel_Ngoma'"><button style="margin-right:15px;" mat-raised-button *ngIf="selectedService">Add
+                    New Notification</button></a> -->
+        </div>
+
+        <div style="height:500px;overflow: auto;" *ngIf="selectedService">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>userType</th>
+                        <th>Device</th>
+                        <th>Notification Type</th>
+                        <th>Campaign Name</th>
+                        <th>Message</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="let item of distributionList.notification | paginate: { itemsPerPage: size, currentPage: p,totalItems: totalElements}; let i=index">
+                        <td>{{item.id}}</td>
+                        <td>{{item.userType}}</td>
+                        <td>{{item.device}}</td>
+                        <td>{{item.notificationType.typeName}}</td>
+                        <td>{{item.caimpainName}}</td>
+                        <td class="cont">
+                            <div>{{item.message}}</div>
+                        </td>
+                        <td *ngIf="item.isProcessed === true">Success</td>
+                        <td *ngIf="item.isProcessed === false">In Process</td>
+
+                        <td>
+                            <a style="text-decoration:none;" title="View" mat-mini-fab
+                                (click)="viewNotificationDialog(item)" *ngIf="item.isProcessed === true">
+                                <mat-icon>visibility</mat-icon>
+                            </a>
+                            <a style="text-decoration:none;" title="Repeat" mat-mini-fab
+                                (click)="editNotificationDialog(item)">
+                                <mat-icon>repeat</mat-icon>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <pagination-controls (pageChange)="pageChanged($event)" maxSize="6" style="text-align: right;margin-top: 8px;">
+        </pagination-controls>
+
+    </div>
+</div>

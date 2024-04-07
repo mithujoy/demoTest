@@ -1,0 +1,109 @@
+<h1 mat-dialog-title class="primary-color">Repeat Notification</h1>
+<form class="form-inline" [formGroup]="notificationFrom" (ngSubmit)="onSubmit(notificationFrom)">
+    <mat-dialog-content style="overflow:hidden;" class="accent-color">
+
+        <div class="container-fluid">
+            <div class="row">
+                <div>
+                    <div class="form-group margindate example-half-width" style="margin-bottom:12px;">
+                        <label class="control-label col-sm-3 datesubscription nowrap">User Type:</label>
+                        <div class="col-sm-9 ">
+                            <input autocomplete="off" class="date_dropdown date_input form-control" id="notificationType"
+                                type="text" formControlName="userType" name="userType" readonly>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group margindate example-half-width" style="margin-bottom:12px;">
+                        <label class="control-label col-sm-3 datesubscription nowrap">Selected Device:</label>
+                        <div class="col-sm-9 ">
+                            <input autocomplete="off" type="text" class="date_dropdown date_input form-control"
+                                formControlName="deviceName" name="deviceName" readonly>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group margindate example-half-width" style="margin-bottom:12px;">
+                        <label class="control-label col-sm-3 datesubscription nowrap">OS Version:</label>
+                        <div class="col-sm-9 ">
+                            <input autocomplete="off" type="text" class="date_dropdown date_input form-control"
+                                formControlName="osVersion" name="osVersion" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group margindate example-half-width" style="margin-bottom:12px;">
+                        <label class="control-label col-sm-3 datesubscription nowrap">App Version:</label>
+                        <div class="col-sm-9 ">
+                            <input autocomplete="off" type="text" class="date_dropdown date_input form-control"
+                                floatPlaceholder="never" formControlName="appVersion" name="appVersion" readonly>
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group margindate example-half-width" style="margin-bottom:12px;">
+                        <label class="control-label col-sm-3 datesubscription nowrap">Campaign Name:</label>
+                        <div class="col-sm-9 ">
+                            <input autocomplete="off" class="form-control date_input" id="titleInput" placeholder="Enter Title"
+                                type="text" formControlName="campaign" name="campaign" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group margindate example-half-width" style="margin-bottom:12px;">
+                        <label class="control-label col-sm-3 datesubscription nowrap">Message:</label>
+                        <div class="col-sm-9 ">
+                            <input autocomplete="off" class="form-control date_input" id="titleInput" placeholder="Enter Title"
+                                type="text" formControlName="message" name="message" readonly>
+                            <input autocomplete="off" type="hidden" formControlName="notificationItem" name="notificationItem">
+                            <input type='hidden' class="example-half-width" formControlName="imgPath" name="imgPath">
+
+                        </div>
+                    </div>
+
+                    <!-- <div class="form-group margindate example-half-width" style="margin-bottom:12px;">
+            <label class="control-label col-sm-3 datesubscription nowrap">Notification Type:</label>
+            <div class="col-sm-9 ">
+                <input autocomplete="off" type="text"  formControlName="notificationItem"  name="notificationItem">
+                  
+            </div>
+        </div>    
+    
+        <div class="form-group margindate example-half-width" style="margin-bottom:15px;">
+            <label class="control-label col-sm-3 datesubscription nowrap">Image:</label>
+            <div class="col-sm-9 ">
+    
+         <input type='file' class="example-half-width" accept='image/jpeg,image/png' (change)='openFile($event, selectedService)'>
+         <input type='hidden' class="example-half-width"  formControlName="imgPath"  name="imgPath" > 
+            </div>
+        </div> -->
+
+                    <div class="form-group margindate example-half-width" style="margin-bottom:12px;">
+                        <label class="control-label col-sm-3 datesubscription nowrap">Notification Type:</label>
+                        <div class="col-sm-9 ">
+
+                            <input autocomplete="off" class="form-control" type="text" formControlName="notificationItem"
+                                name="notificationItem" readonly>
+
+                            <input type='hidden' class="example-half-width" formControlName="notificationId" name="notificationId">
+                        </div>
+                    </div>
+
+                    <div class="form-group margindate example-half-width" style="margin-bottom:12px;">
+                        <label class="control-label col-sm-3 datesubscription nowrap">Date Time:</label>
+                        <div class="col-sm-9 ">
+                            <input class="form-control" placeholder="Date Time:" [owlDateTimeTrigger]="dt"
+                                [owlDateTime]="dt" formControlName="dateTime" name="dateTime">
+                            <owl-date-time #dt></owl-date-time>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button style="margin-right: 7px;" mat-raised-button color="primary">Confirm</button>
+        <button mat-raised-button color="primary" mat-dialog-close> Close</button>
+    </mat-dialog-actions>
+</form>

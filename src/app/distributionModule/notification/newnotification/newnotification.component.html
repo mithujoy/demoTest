@@ -1,0 +1,289 @@
+<h1 mat-dialog-title class="primary-color">Add New Notification</h1>
+<form class="form-inline" [formGroup]="notificationFrom" (ngSubmit)="onSubmit(notificationFrom)">
+    <!-- <mat-dialog-content style="overflow:hidden;" class="accent-color" *ngIf="deviceNames"> -->
+
+    <div class="container-fluid">
+
+        <!-- <div class="button-row" style="padding-bottom:15px;"> -->
+        <!-- <button style="margin-right:15px;" mat-raised-button (click)="openDialog()" *ngIf="selectedSection">Add New Item</button>
+        <button style="margin-right:15px;" mat-raised-button (click)="displayContainerData(selectedService,selectedSection)" *ngIf="selectedSection">Refresh</button>
+        <a style="text-decoration:none;" mat-raised-button (click)="saveDisplayPosition()" [disabled]="displayData.length==0" *ngIf="showSavePostion && selectedSection">Save Position</a> -->
+        <!--<a mat-raised-button routerLink="#">Save</a>
+  <a mat-raised-button routerLink=".">Cancle</a>-->
+        <!-- </div> -->
+        <div class="row">
+            <div>
+                <div class="form-group margindate example-half-width" style="margin-bottom:12px;">
+                    <label class="control-label col-sm-3 datesubscription nowrap">User Type:</label>
+                    <div class="col-sm-9 ">
+                        <select autocomplete="off" class="date_dropdown date_input form-control" id="notificationType"
+                            [(ngModel)]="selectedUserType" formControlName="userType" name="userType">
+                            <option *ngFor="let userType of userTypes[0].subCatagory" [value]="userType.audience">{{
+                                userType.audience }}</option>
+
+                        </select>
+                    </div>
+                </div>
+
+
+
+                <!--<mat-form-field class="example-half-width" style="margin-bottom:5px;" >
+        <mat-select  placeholder="User Type" floatPlaceholder="never" [(ngModel)]="selectedUserType" formControlName="userType" name="userType">
+            <mat-option *ngFor="let userType of userTypes[0].subCatagory" [value]="userType.audience">{{ userType.audience }}</mat-option>
+            
+        </mat-select> 
+      </mat-form-field>-->
+
+                <div class="form-group margindate example-half-width" style="margin-bottom:12px;">
+                    <label class="control-label col-sm-3 datesubscription nowrap">Select Device:</label>
+                    <div class="col-sm-9 ">
+                        <select autocomplete="off" class="date_dropdown date_input form-control" [(ngModel)]="selectedDevice"
+                            (ngModelChange)="displayOsVersionData(selectedDevice)" formControlName="deviceName" name="deviceName">
+                            <option *ngFor="let device of deviceNames[0].subCatagory" [value]="device.audience">{{
+                                device.audience }}</option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <!--<mat-form-field class="example-half-width" style="margin-bottom:5px;">
+        <mat-select  placeholder="Select Device"   [(ngModel)]="selectedDevice" (ngModelChange)="displayOsVersionData(selectedDevice)" formControlName="deviceName" name="deviceName">
+            <mat-option *ngFor="let device of deviceNames[0].subCatagory" [value]="device.audience">{{ device.audience }}</mat-option>
+            
+        </mat-select>
+      </mat-form-field>-->
+
+                <div class="form-group margindate example-half-width" style="margin-bottom:12px;">
+                    <label class="control-label col-sm-3 datesubscription nowrap">OS Version:</label>
+                    <div class="col-sm-9">
+                        <select autocomplete="off" class="date_dropdown date_input form-control" [(ngModel)]="selectedOsVersion"
+                            formControlName="osVersion" name="osVersion">
+                            <option value="All">All </option>
+                            <option *ngFor="let osv of osVersionData" [value]="osv.audience">{{ osv.audience }}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!--<mat-form-field class="example-half-width" style="margin-bottom:5px;">
+        <mat-select  placeholder="OS Version"   [(ngModel)]="selectedOsVersion" formControlName="osVersion" name="osVersion">
+            
+            <mat-option *ngFor="let osv of osVersionData"  [value]="osv.audience">{{ osv.audience }}</mat-option>         
+                 
+        </mat-select>
+      </mat-form-field>-->
+
+                <div class="form-group margindate example-half-width" style="margin-bottom:12px;">
+                    <label class="control-label col-sm-3 datesubscription nowrap">App Version:</label>
+                    <div class="col-sm-9 ">
+                        <select autocomplete="off" class="date_dropdown date_input form-control" floatPlaceholder="never"
+                            [(ngModel)]="selectedAppVersion" formControlName="appVersion" name="appVersion">
+                            <option value="All">All </option>
+                            <option *ngFor="let appv of appVersionData" [value]="appv.audience">{{ appv.audience }}</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <!--<mat-form-field class="example-half-width" style="margin-bottom:5px;">
+        <mat-select  placeholder="App Version" floatPlaceholder="never" [(ngModel)]="selectedAppVersion" formControlName="appVersion" name="appVersion">
+            
+            <mat-option *ngFor="let appv of appVersionData" [value]="appv.audience">{{ appv.audience }}</mat-option>
+                   
+        </mat-select>
+      </mat-form-field> -->
+
+                <div class="form-group margindate example-half-width" style="margin-bottom:12px;">
+                    <label class="control-label col-sm-3 datesubscription nowrap">Campaign Name:</label>
+                    <div class="col-sm-9 ">
+                        <input autocomplete="off" class="form-control date_input" id="titleInput" placeholder="Enter notification title"
+                            type="text" [(ngModel)]="campaignName" formControlName="campaign" name="campaign">
+                    </div>
+                </div>
+
+                <!-- <mat-input-container class="example-full-width">
+                <input matInput placeholder="Campaign Name" [(ngModel)]="campaignName" formControlName="campaign"  name="campaign" >
+
+      </mat-input-container>-->
+
+                <div class="form-group margindate example-half-width" style="margin-bottom:12px;">
+                    <label class="control-label col-sm-3 datesubscription nowrap">Message:</label>
+                    <div class="col-sm-9 ">
+                        <input autocomplete="off" class="form-control date_input" id="titleInput" placeholder="Enter notification message max 200 char"
+                            type="text" [(ngModel)]="message" formControlName="message" name="message" maxlength="200">
+                        <span>Message can be max 200 characters long.</span>
+                    </div>
+                </div>
+
+                <div class="form-group margindate example-half-width" style="margin-bottom:12px;">
+                    <label class="control-label col-sm-3 datesubscription nowrap">Schedule Notification:</label>
+                    <div class="col-sm-9 ">
+                        <mat-checkbox name="isSchedule" [(ngModel)]="isSchedule" formControlName="isSchedule" (change)="onisScheduleChange($event.checked)"></mat-checkbox>
+                    </div>
+                </div>
+
+                <div class="form-group margindate example-half-width" style="margin-bottom:12px;" *ngIf="showdateSelection">
+                    <label class="control-label col-sm-3 datesubscription nowrap">Schedule Date:</label>
+                    <div class="col-sm-9 ">
+                        <input class="form-control" [min]="min" autocomplete="off" placeholder="Date Time:"
+                            [owlDateTimeTrigger]="dt" [owlDateTime]="dt" formControlName="dateTime" name="dateTime">
+                        <owl-date-time #dt></owl-date-time>
+                    </div>
+                </div>
+
+                <!-- <div class="form-group margindate example-half-width" style="margin-bottom:12px;">
+                        <label class="control-label col-sm-3 datesubscription nowrap">Schedule Date:</label>
+                        <div class="col-sm-9 ">
+                            <input matInput class="" [matDatepicker]="picker" placeholder="Choose a date">
+                            <mat-datepicker-toggle matSuffix [for]="picker">
+                                <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </div>
+                    </div> -->
+
+                <!-- <mat-form-field class="example-half-width">
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field> -->
+
+                <!--<mat-input-container class="example-full-width">
+                <input matInput placeholder="Message" [(ngModel)]="message" formControlName="message" name="message" >
+
+      </mat-input-container>-->
+
+                <!-- <mat-form-field class="example-half-width" style="margin-bottom:10px;">
+        <mat-select  placeholder="Content"  [(ngModel)]="selectedContentScreen" name="contentScreenName">
+
+            <mat-option [value]="1" > Home </mat-option>
+            <mat-option [value]="2"> Album </mat-option>  
+            <mat-option [value]="3"> Artist </mat-option>
+            <mat-option [value]="4"> Playlist </mat-option>  
+            <mat-option [value]="4"> Track </mat-option>      
+        </mat-select>
+      </mat-form-field> -->
+
+                <div class="form-group margindate example-half-width" style="margin-bottom:12px;">
+                    <label class="control-label col-sm-3 datesubscription nowrap">Notification Type:</label>
+                    <div class="col-sm-9 ">
+                        <select autocomplete="off" class="date_dropdown date_input form-control" [(ngModel)]="selectedNotifictionType"
+                            (ngModelChange)="chooseContentData(selectedNotifictionType)" formControlName="notificationItem"
+                            name="notificationItem">
+                            <option *ngFor="let notification of notificationItems" [value]="notification.id">{{
+                                notification.typeName }}</option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group margindate example-half-width" style="margin-bottom:12px;" *ngIf="showContentSelection">
+                    <label class="control-label col-sm-3 datesubscription nowrap">Choose Content:</label>
+                    <div class="col-sm-9 ">
+                        <input autocomplete="off" class="form-control date_input" id="titleInput" placeholder="Please click on select button to choose Content"
+                            type="text" [(ngModel)]="contentName" formControlName="notificationContent" name="content"
+                            readonly>
+                        <a id="close" class="button2" (click)=contentDialog(selectedNotifictionType)> Select</a>
+                    </div>
+                </div>
+
+                <!--<mat-form-field class="example-half-width" style="margin-bottom:5px;">
+        <mat-select  placeholder="Notification Type" floatPlaceholder="never" [(ngModel)]="selectedNotifictionType" formControlName="notificationItem"  name="notificationItem">
+          <mat-option *ngFor="let notification of notificationItems" [value]="notification.id">{{ notification.typeName }}</mat-option>   
+                   
+        </mat-select>
+      </mat-form-field>-->
+
+                <!-- <mat-form-field class="example-half-width" style="margin-bottom:10px;">
+        <mat-select  placeholder="Image Type" floatPlaceholder="never" [(ngModel)]="selectedImageType" name="imageType">
+
+             
+            <mat-option [value]="1"> Notification Image </mat-option>
+            <mat-option [value]="2"> Artwork Image </mat-option>  
+                   
+        </mat-select>
+      </mat-form-field> -->
+
+                <!-- <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+  </div>
+  <div class="custom-file">
+    <input type="file" class="custom-file-input example-half-width" accept='image/jpeg,image/png' (change)='openFile($event)' id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+  </div>
+</div> -->
+                <!-- <div class="file-field md-form">
+        <div class="btn btn-primary btn-sm float-left waves-effect waves-light">
+            <span>Choose file</span>
+            <input type="file">
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" placeholder="Upload your file">
+        </div>
+    </div> -->
+                <div class="form-group margindate example-half-width" style="margin-bottom:12px;">
+                    <label class="control-label col-sm-3 datesubscription nowrap">Image Type:</label>
+                    <div class="col-sm-9 ">
+                        <select autocomplete="off" class="date_dropdown date_input form-control" floatPlaceholder="never"
+                            [(ngModel)]="selectedImageType" (ngModelChange)="chooseContentImage(selectedImageType)"
+                            formControlName="imageType" name="imageType">
+                            <option value="1">No Image </option>
+                            <option value="2">Artwork Image </option>
+                            <option value="3">Notification Image </option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="form-group margindate example-half-width" style="margin-bottom:12px;" *ngIf="showImageupload">
+                    <label class="control-label col-sm-3 datesubscription nowrap">Image:</label>
+                    <div class="col-sm-9 ">
+
+                        <input type='file' class="example-half-width" accept='image/jpeg,image/png' (change)='openFile($event, selectedService)'>
+                        <input type='hidden' class="example-half-width" [(ngModel)]="imgPath" formControlName="imgPath"
+                            name="imgPath">
+                    </div>
+                </div>
+
+
+                <div class="form-group margindate example-half-width" style="margin-bottom:12px;">
+                    <label class="control-label col-sm-3 datesubscription nowrap">For User:</label>
+                    <div class="col-sm-9 ">
+                        <mat-checkbox name="forUser" [(ngModel)]="forUser" formControlName="forUser" (change)="onChange($event.checked)"></mat-checkbox>
+                    </div>
+                </div>
+
+
+                <div class="form-group margindate example-half-width" style="margin-bottom:12px;" *ngIf="showUserSelection">
+                    <label class="control-label col-sm-3 datesubscription nowrap">Enter Mobile Number:</label>
+                    <div class="col-sm-9 ">
+                        <input autocomplete="off" class="form-control date_input" id="titleInput" placeholder="Msisdn with dialing code"
+                            type="text" [(ngModel)]="mobileNumber" formControlName="mobileNumber" name="mobileNumber">
+
+                    </div>
+                </div>
+
+                <!-- <span class="label" *ngIf="!browseStatus" class="error_class">Please Browse only txt file</span>
+        <ul *ngIf="!validTextFileStatus" class="error_class">
+            <li>Avoid special character</li>
+            <li>Avoid alphabets</li>
+            <li>Please check the length of resource code</li>
+        </ul> -->
+                <!-- <span class="label" *ngIf="!validTextFileStatus" class="error_class">1.avoid special character 2.avoid alphabets 3.Please check the length of resource code</span> -->
+
+                <!-- <button style="margin-right: 7px;" mat-raised-button color="primary" (click)="addItem(selectedService,selectedSource,selectedAction,selectedType)" [disabled]="browseFileData.length==0 || !selectedService ||!selectedSource || !selectedAction || !selectedType || !validTextFileStatus">Submit</button>
+    <button mat-raised-button color="primary" mat-dialog-close> Close</button> -->
+                <!--<div class="form-group margindate example-half-width" style="margin-bottom:15px;">
+    <button style="margin-right: 7px;margin-top: 10px;" [disabled]=" !message || !campaignName"  mat-raised-button color="primary"> Submit</button>
+    </div>-->
+            </div>
+        </div>
+    </div>
+    <!-- </mat-dialog-content> -->
+
+    <div *ngIf="deviceNames">
+        <button style="margin-right: 7px;" mat-raised-button color="primary" [disabled]=" !selectedNotifictionType || !message || !campaignName ">Submit</button>
+        <a id="close" (click)=closewindow()><button style="margin-right: 7px;" mat-raised-button color="primary">
+                Close</button></a>
+    </div>
+</form>

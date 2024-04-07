@@ -1,0 +1,98 @@
+/* You can add global styles to this file, and also import other style files */
+/*@import "~bootstrap/dist/css/bootstrap.css";*/
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~font-awesome/css/font-awesome.css";
+
+.mat-sidenav {
+    width: 110px;
+    height: 100%;
+    padding: 20px;
+    background-color: #6bc7cc;
+}
+
+.sidebar-wrapper {
+    width: 200px;
+    height: 100%;
+    padding: 20px;
+    background-color: #6bc7cc;
+}
+
+.example-radio-group {
+    display: inline-flex;
+    flex-direction: row;
+}
+
+.example-radio-button {
+    margin: 15px;
+}
+
+.example-selected-value {
+    margin: 15px 0;
+}
+
+
+/* Error Class */
+
+.error_class {
+    color: red;
+}
+
+.mat-input-element{width: 84% !important;}
+/*@import "~ng-pick-datetime/assets/style/picker.min.css";*/
+.owl-dt-popup-container{
+    font-size:15px !important;
+}
+
+.button2 {
+  background-color: #3f51b5; /* blue */
+  border: none;
+  color: white;
+  padding: 6px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.cont div{
+    overflow: hidden;
+    white-space: nowrap;
+  text-overflow: ellipsis;
+  position: relative;
+  padding: .5em;
+
+  width: 250px;
+  max-width: 250px;
+ 
+        
+}
+
+.cont:hover div {
+ overflow: visible;
+  white-space: normal;
+  -ms-word-break: break-all;
+  word-break: break-all;
+  /* Non standard for webkit*/
+     word-break: break-word;
+
+-webkit-hyphens: auto;
+   -moz-hyphens: auto;
+        hyphens: auto;
+  max-width: 250px;
+  width: 250px;
+  z-index: 1;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+} 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+} 
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
